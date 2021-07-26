@@ -87,6 +87,7 @@ playBtn.addEventListener("click", () => {
 // replayBtn 이벤트
 replayBtn.addEventListener("click", () => {
   //   class 세팅
+  playBtn.classList.remove("invisible");
   result.classList.add("invisible");
   playBtn.classList.remove("start");
   playBtn.classList.add("stop");
