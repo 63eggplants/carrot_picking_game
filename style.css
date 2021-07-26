@@ -18,6 +18,10 @@ body {
   background-color: black;
 }
 
+.invisible {
+  display: none;
+}
+
 .game {
   width: 1000px;
   height: 600px;
@@ -26,10 +30,13 @@ body {
   text-align: center;
   margin: auto;
   position: relative;
+  padding-top: 15px;
 }
 
-.playBtn {
-  margin: 15px 0;
+.playBtn-container {
+  width: 70px;
+  height: 70px;
+  margin: 15px auto;
 }
 
 .timeCounter {
