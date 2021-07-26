@@ -1,6 +1,5 @@
 // 1. 플레이 버튼을 누르면 게임 스탑 버튼으로 바뀌기
 const playBtn = document.querySelector(".playBtn");
-
 const timeCounter = document.querySelector(".timeCounter");
 
 let time;
@@ -11,6 +10,7 @@ playBtn.addEventListener("click", () => {
     playBtn.classList.contains("start") &&
     playBtn.classList.contains("init")
   ) {
+    console.log(1);
     //   class 세팅
     playBtn.classList.remove("init");
     playBtn.classList.remove("start");
@@ -26,9 +26,18 @@ playBtn.addEventListener("click", () => {
     playBtn.classList.remove("init");
     timeCounter.textContent = `0:${time--}`;
     timer = setInterval(() => {
+      if (time === 0) {
+        clearInterval(timer);
+      }
       timeCounter.textContent = `0:${time--}`;
     }, 1000);
+
+    // setTimeout(() => {
+    //   clearInterval(timer);
+    // }, 10000);
   } else if (playBtn.classList.contains("stop")) {
+    console.log(2);
+
     playBtn.classList.remove("stop");
     playBtn.classList.add("start");
     playBtn.innerHTML = `
@@ -40,6 +49,8 @@ playBtn.addEventListener("click", () => {
     playBtn.classList.contains("start") &&
     !playBtn.classList.contains("init")
   ) {
+    console.log(3);
+
     playBtn.classList.remove("start");
     playBtn.classList.add("stop");
 
@@ -48,11 +59,15 @@ playBtn.addEventListener("click", () => {
     `;
 
     timer = setInterval(() => {
+      if (time === 0) {
+        clearInterval(timer);
+      }
       timeCounter.textContent = `0:${time--}`;
     }, 1000);
-    setTimeout(() => {
-      clearInterval(timer);
-    }, (time + 1) * 1000);
+
+    // setTimeout(() => {
+    //   clearInterval(timer);
+    // }, (time + 1) * 1000);
   }
 });
 
