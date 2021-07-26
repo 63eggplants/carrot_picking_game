@@ -10,13 +10,13 @@ let time;
 let timer;
 let num;
 
+// playBtn 이벤트
 playBtn.addEventListener("click", () => {
   if (
     //   처음 시작
     playBtn.classList.contains("start") &&
     playBtn.classList.contains("init")
   ) {
-    console.log(1);
     //   class 세팅
     playBtn.classList.remove("init");
     playBtn.classList.remove("start");
@@ -29,7 +29,6 @@ playBtn.addEventListener("click", () => {
 
     // timeCounter 세팅
     time = 10;
-    playBtn.classList.remove("init");
     timeCounter.textContent = `0:${time--}`;
     timer = setInterval(() => {
       if (time === 0) {
@@ -38,8 +37,6 @@ playBtn.addEventListener("click", () => {
         resultTitle.textContent = "YOU LOSE";
         result.classList.remove("invisible");
         playBtn.classList.add("init");
-
-        // 여기에 YOU LOSE 나타나도록 작성
       }
       timeCounter.textContent = `0:${time--}`;
     }, 1000);
@@ -85,4 +82,31 @@ playBtn.addEventListener("click", () => {
       timeCounter.textContent = `0:${time--}`;
     }, 1000);
   }
+});
+
+// replayBtn 이벤트
+replayBtn.addEventListener("click", () => {
+  //   class 세팅
+  result.classList.add("invisible");
+  playBtn.classList.remove("start");
+  playBtn.classList.add("stop");
+
+  // html 세팅
+  playBtn.innerHTML = `
+        <i class="fas fa-stop"></i>
+        `;
+
+  // timeCounter 세팅
+  time = 10;
+  timeCounter.textContent = `0:${time--}`;
+  timer = setInterval(() => {
+    if (time === 0) {
+      clearInterval(timer);
+      playBtn.classList.add("invisible");
+      resultTitle.textContent = "YOU LOSE";
+      result.classList.remove("invisible");
+      playBtn.classList.add("init");
+    }
+    timeCounter.textContent = `0:${time--}`;
+  }, 1000);
 });
