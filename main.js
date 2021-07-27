@@ -4,9 +4,12 @@ const numCounter = document.querySelector(".numCounter");
 const result = document.querySelector(".result");
 const resultTitle = document.querySelector(".result__title");
 const replayBtn = document.querySelector(".replayBtn");
+
+const field = document.querySelector(".field");
 const carrots = document.querySelectorAll(".carrot");
 const carrot = document.querySelector(".carrot");
-const field = document.querySelector(".field");
+const bugs = document.querySelectorAll(".bug");
+const bug = document.querySelector(".bug");
 
 let time;
 let timer;
@@ -120,10 +123,18 @@ addEventListener("load", () => {
   const fieldHeight = field.offsetHeight;
   const carrotWidth = carrot.width;
   const carrotHeight = carrot.height;
+  const bugWidth = bug.width;
+  const bugHeight = bug.height;
 
   carrots.forEach(carrot => {
     carrot.style.transform = `translate(${
       Math.random() * (fieldWidth - carrotWidth)
     }px, ${Math.random() * (fieldHeight - carrotHeight)}px)`;
+  });
+
+  bugs.forEach(bug => {
+    bug.style.transform = `translate(${
+      Math.random() * (fieldWidth - bugWidth)
+    }px, ${Math.random() * (fieldHeight - bugHeight)}px)`;
   });
 });
