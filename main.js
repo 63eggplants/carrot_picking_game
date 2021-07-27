@@ -1,10 +1,12 @@
-// 1. 플레이 버튼을 누르면 게임 스탑 버튼으로 바뀌기
 const playBtn = document.querySelector(".playBtn");
 const timeCounter = document.querySelector(".timeCounter");
 const numCounter = document.querySelector(".numCounter");
 const result = document.querySelector(".result");
 const resultTitle = document.querySelector(".result__title");
 const replayBtn = document.querySelector(".replayBtn");
+const carrots = document.querySelectorAll(".carrot");
+const carrot = document.querySelector(".carrot");
+const field = document.querySelector(".field");
 
 let time;
 let timer;
@@ -110,4 +112,18 @@ replayBtn.addEventListener("click", () => {
     }
     timeCounter.textContent = `0:${time--}`;
   }, 1000);
+});
+
+// 당근, 벌레 랜덤 배치
+addEventListener("load", () => {
+  const fieldWidth = field.offsetWidth;
+  const fieldHeight = field.offsetHeight;
+  const carrotWidth = carrot.width;
+  const carrotHeight = carrot.height;
+
+  carrots.forEach(carrot => {
+    carrot.style.transform = `translate(${
+      Math.random() * (fieldWidth - carrotWidth)
+    }px, ${Math.random() * (fieldHeight - carrotHeight)}px)`;
+  });
 });
