@@ -119,6 +119,28 @@ replayBtn.addEventListener("click", () => {
   //   numCounter 세팅
   num = 10;
   numCounter.textContent = `${num}`;
+
+  //   당근, 벌레 재배치
+  const fieldWidth = field.offsetWidth;
+  const fieldHeight = field.offsetHeight;
+  const carrotWidth = carrot.width;
+  const carrotHeight = carrot.height;
+  const bugWidth = bug.width;
+  const bugHeight = bug.height;
+
+  carrots.forEach(carrot => {
+    carrot.style.transform = `translate(${
+      Math.random() * (fieldWidth - carrotWidth)
+    }px, ${Math.random() * (fieldHeight - carrotHeight)}px)`;
+
+    carrot.style.display = "inline";
+  });
+
+  bugs.forEach(bug => {
+    bug.style.transform = `translate(${
+      Math.random() * (fieldWidth - bugWidth)
+    }px, ${Math.random() * (fieldHeight - bugHeight)}px)`;
+  });
 });
 
 // 당근, 벌레 랜덤 배치
@@ -151,6 +173,10 @@ field.addEventListener("click", event => {
   console.dir(event.target);
   if (event.target.classList.contains("carrot")) {
     numCounter.textContent = `${--num}`;
+    const id = event.target.dataset.id;
+    const pickedCarrot = document.querySelector(`.carrot[data-id="${id}"]`);
+    pickedCarrot.style.display = "none";
+
     if (num === 0) {
       clearInterval(timer);
       playBtn.classList.add("invisible");
