@@ -25,7 +25,6 @@ const bugHeight = 50;
 // audio
 const alert = document.querySelector(".alert");
 const bugSound = document.querySelector(".bugSound");
-const carrotSound = document.querySelector(".carrotSound");
 const win = document.querySelector(".win");
 
 function initSet() {
@@ -99,6 +98,7 @@ playBtn.addEventListener("click", () => {
       <i class="fas fa-play"></i>
       `;
     showResult("REPLAY?");
+    playBtn.classList.remove("invisible");
   } else if (
     //   일시정지에서 재개
 
@@ -138,16 +138,22 @@ field.addEventListener("click", event => {
     //   당근
     event.target.classList.contains("carrot")
   ) {
-    carrotSound.play();
-    numCounter.textContent = `${--num}`;
-    const id = event.target.dataset.id;
-    const pickedCarrot = document.querySelector(`.carrot[data-id="${id}"]`);
-    pickedCarrot.style.display = "none";
+    const promise = new Promise(resolve => {
+      const carrotSound = new Audio("sound/carrot_pull.mp3");
+      resolve(carrotSound);
+    });
+    promise.then(carrotSound => {
+      carrotSound.play();
+      numCounter.textContent = `${--num}`;
+      const id = event.target.dataset.id;
+      const pickedCarrot = document.querySelector(`.carrot[data-id="${id}"]`);
+      pickedCarrot.style.display = "none";
 
-    if (num === 0) {
-      win.play();
-      showResult("YOU WON");
-    }
+      if (num === 0) {
+        win.play();
+        showResult("YOU WON");
+      }
+    });
   } else if (
     //   벌레
     event.target.classList.contains("bug")
