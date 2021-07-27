@@ -1,6 +1,7 @@
 const playBtn = document.querySelector(".playBtn");
 const timeCounter = document.querySelector(".timeCounter");
 const numCounter = document.querySelector(".numCounter");
+const resultContainer = document.querySelector(".result-container");
 const result = document.querySelector(".result");
 const resultTitle = document.querySelector(".result__title");
 const replayBtn = document.querySelector(".replayBtn");
@@ -40,7 +41,7 @@ playBtn.addEventListener("click", () => {
         clearInterval(timer);
         playBtn.classList.add("invisible");
         resultTitle.textContent = "YOU LOSE";
-        result.classList.remove("invisible");
+        resultContainer.classList.remove("invisible");
         playBtn.classList.add("init");
       }
       timeCounter.textContent = `0:${time--}`;
@@ -61,13 +62,13 @@ playBtn.addEventListener("click", () => {
 
     clearInterval(timer);
     resultTitle.textContent = "REPLAY?";
-    result.classList.remove("invisible");
+    resultContainer.classList.remove("invisible");
   } else if (
     playBtn.classList.contains("start") &&
     !playBtn.classList.contains("init")
   ) {
     //   일시정지에서 재개
-    result.classList.add("invisible");
+    resultContainer.classList.add("invisible");
     playBtn.classList.remove("start");
     playBtn.classList.add("stop");
 
@@ -80,7 +81,7 @@ playBtn.addEventListener("click", () => {
         clearInterval(timer);
         playBtn.classList.add("invisible");
         resultTitle.textContent = "YOU LOSE";
-        result.classList.remove("invisible");
+        resultContainer.classList.remove("invisible");
         playBtn.classList.add("init");
         // 여기에 YOU LOSE 나타나도록 작성
       }
@@ -93,7 +94,7 @@ playBtn.addEventListener("click", () => {
 replayBtn.addEventListener("click", () => {
   //   class 세팅
   playBtn.classList.remove("invisible");
-  result.classList.add("invisible");
+  resultContainer.classList.add("invisible");
   playBtn.classList.remove("start");
   playBtn.classList.add("stop");
 
@@ -110,7 +111,7 @@ replayBtn.addEventListener("click", () => {
       clearInterval(timer);
       playBtn.classList.add("invisible");
       resultTitle.textContent = "YOU LOSE";
-      result.classList.remove("invisible");
+      resultContainer.classList.remove("invisible");
       playBtn.classList.add("init");
     }
     timeCounter.textContent = `0:${time--}`;
@@ -181,7 +182,7 @@ field.addEventListener("click", event => {
       clearInterval(timer);
       playBtn.classList.add("invisible");
       resultTitle.textContent = "YOU WON";
-      result.classList.remove("invisible");
+      resultContainer.classList.remove("invisible");
       playBtn.classList.add("init");
     }
   }
@@ -189,7 +190,7 @@ field.addEventListener("click", event => {
     clearInterval(timer);
     playBtn.classList.add("invisible");
     resultTitle.textContent = "YOU LOSE";
-    result.classList.remove("invisible");
+    resultContainer.classList.remove("invisible");
     playBtn.classList.add("init");
   }
 });
