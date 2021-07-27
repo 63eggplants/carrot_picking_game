@@ -22,6 +22,12 @@ const carrotHeight = 80;
 const bugWidth = 50;
 const bugHeight = 50;
 
+// audio
+const alert = document.querySelector(".alert");
+const bugSound = document.querySelector(".bugSound");
+const carrotSound = document.querySelector(".carrotSound");
+const win = document.querySelector(".win");
+
 function initSet() {
   //   class 세팅
   playBtn.classList.remove("init");
@@ -41,6 +47,7 @@ function initSet() {
   timeCounter.textContent = `0:${time--}`;
   timer = setInterval(() => {
     if (time === 0) {
+      alert.play();
       showResult("YOU LOSE");
     }
     timeCounter.textContent = `0:${time--}`;
@@ -108,6 +115,7 @@ playBtn.addEventListener("click", () => {
 
     timer = setInterval(() => {
       if (time === 0) {
+        alert.play();
         showResult("YOU LOSE");
       }
       timeCounter.textContent = `0:${time--}`;
@@ -125,17 +133,26 @@ field.addEventListener("click", event => {
   if (event.target.tagName !== "IMG") {
     return;
   }
-  console.dir(event.target);
-  if (event.target.classList.contains("carrot")) {
+
+  if (
+    //   당근
+    event.target.classList.contains("carrot")
+  ) {
+    carrotSound.play();
     numCounter.textContent = `${--num}`;
     const id = event.target.dataset.id;
     const pickedCarrot = document.querySelector(`.carrot[data-id="${id}"]`);
     pickedCarrot.style.display = "none";
 
     if (num === 0) {
+      win.play();
       showResult("YOU WON");
     }
-  } else if (event.target.classList.contains("bug")) {
+  } else if (
+    //   벌레
+    event.target.classList.contains("bug")
+  ) {
+    bugSound.play();
     showResult("YOU LOSE");
   }
 });
