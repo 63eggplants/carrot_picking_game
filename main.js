@@ -115,6 +115,10 @@ replayBtn.addEventListener("click", () => {
     }
     timeCounter.textContent = `0:${time--}`;
   }, 1000);
+
+  //   numCounter 세팅
+  num = 10;
+  numCounter.textContent = `${num}`;
 });
 
 // 당근, 벌레 랜덤 배치
@@ -137,4 +141,29 @@ addEventListener("load", () => {
       Math.random() * (fieldWidth - bugWidth)
     }px, ${Math.random() * (fieldHeight - bugHeight)}px)`;
   });
+});
+
+// 당근, 벌레에 click 이벤트 추가
+field.addEventListener("click", event => {
+  if (event.target.tagName !== "IMG") {
+    return;
+  }
+  console.dir(event.target);
+  if (event.target.classList.contains("carrot")) {
+    numCounter.textContent = `${--num}`;
+    if (num === 0) {
+      clearInterval(timer);
+      playBtn.classList.add("invisible");
+      resultTitle.textContent = "YOU WON";
+      result.classList.remove("invisible");
+      playBtn.classList.add("init");
+    }
+  }
+  if (event.target.classList.contains("bug")) {
+    clearInterval(timer);
+    playBtn.classList.add("invisible");
+    resultTitle.textContent = "YOU LOSE";
+    result.classList.remove("invisible");
+    playBtn.classList.add("init");
+  }
 });
