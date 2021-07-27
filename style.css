@@ -64,11 +64,10 @@ body {
 }
 
 .field {
-  width: 100%;
+  width: 1000px;
   height: 300px;
   position: absolute;
   bottom: 0;
-  /* background-color: blueviolet; */
   border-radius: 0 0 20px 20px;
 }
 
